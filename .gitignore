@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.suo
+/magicmanam.Windows.ClipboardViewer/.vs/magicmanam.Windows.ClipboardViewer/v15/Server/sqlite3
+/magicmanam.Windows.ClipboardViewer/bin
+/magicmanam.Windows.ClipboardViewer/obj
+/packages/magicmanam.Windows.1.0.1
