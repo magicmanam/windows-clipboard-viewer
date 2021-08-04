@@ -18,9 +18,9 @@ class Form {
     {// Create clipboard viewer wrapper
       this._clipboardViewer = new ClipboardViewer(this.Handle);
 
-      //To make sure that the viewer still ges clipboard events (well-known Windows issue with customer viewers),
+      // To make sure that the viewer still gets clipboard events (well-known Windows issue with customer viewers),
       // Start call the line below every n-seconds (create a timer or some other way)
-      //this._clipboardViewer.RefreshViewer();
+      // this._clipboardViewer.RefreshViewer();
     }
     else if (this._clipboardViewer != null)
     {// Process well-known Windows messages
