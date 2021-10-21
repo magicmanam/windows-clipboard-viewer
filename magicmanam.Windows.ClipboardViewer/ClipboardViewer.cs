@@ -14,34 +14,42 @@ namespace magicmanam.Windows.ClipboardViewer
         }
 
         /// <summary>
-        /// Handles WM_DRAWCLIPBOARD, 
+        /// Clipboard updated event.
+        /// </summary>
+        public event EventHandler ClipboardUpdated;
+
+        /// <summary>
+        /// Handles clipboard-related Windows events. 
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="wParam"></param>
         /// <param name="lParam"></param>
         public void HandleWindowsMessage(int msg, IntPtr wParam, IntPtr lParam)
         {
-            if (msg == Messages.WM_DRAWCLIPBOARD)
+            switch(msg)
             {
-                if (this._nextViewer != IntPtr.Zero)
-                {
-                    WindowsFunctions.SendMessage(this._nextViewer, msg, IntPtr.Zero, IntPtr.Zero);
-                }
-            }
-            else if (msg == Messages.WM_DESTROY)
-            {
-                WindowsFunctions.ChangeClipboardChain(this._handle, this._nextViewer);
-            }
-            else if (msg == Messages.WM_CHANGECBCHAIN)
-            {
-                if (this._nextViewer == wParam)
-                {
-                    this._nextViewer = lParam;
-                }
-                else
-                {
-                    WindowsFunctions.SendMessage(this._nextViewer, msg, wParam, lParam);
-                }
+                case Messages.WM_DRAWCLIPBOARD:
+                    if (this._nextViewer != IntPtr.Zero)
+                    {
+                        WindowsFunctions.SendMessage(this._nextViewer, msg, IntPtr.Zero, IntPtr.Zero);
+                    }
+                    ClipboardUpdated?.Invoke(this, EventArgs.Empty);
+                    break;
+                case Messages.WM_DESTROY:
+                    WindowsFunctions.ChangeClipboardChain(this._handle, this._nextViewer);
+                    break;
+                case Messages.WM_CHANGECBCHAIN:
+                    if (this._nextViewer == wParam)
+                    {
+                        this._nextViewer = lParam;
+                    }
+                    else
+                    {
+                        WindowsFunctions.SendMessage(this._nextViewer, msg, wParam, lParam);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 

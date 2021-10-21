@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>magicmanam.Windows.ClipboardViewer</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <title>C# Windows clipboard viewer</title>
     <authors>Andrei Muski</authors>
     <owners>magicmanam</owners>
@@ -10,7 +10,7 @@
     <license type="expression">MIT</license>
     <projectUrl>https://magicmanam.github.io/windows-clipboard-viewer</projectUrl>
     <description>Simple wrapper over Windows ClipboardViewer</description>
-    <releaseNotes>Updates the package info</releaseNotes>
+    <releaseNotes>Adds ClipboardUpdated event</releaseNotes>
     <copyright>Copyright 2021 magicmanam</copyright>
     <tags>Windows ClipboardViewer Listener C#</tags>
     <icon>images\copy.png</icon>
